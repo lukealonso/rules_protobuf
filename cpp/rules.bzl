@@ -1,6 +1,7 @@
 load("//protobuf:rules.bzl", "proto_compile", "proto_repositories")
 load("//cpp:deps.bzl", "DEPS")
 load("//cpp:grpc_archive.bzl", "grpc_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 def cpp_proto_repositories(
     lang_deps = DEPS,
