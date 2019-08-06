@@ -43,7 +43,8 @@ def py_proto_library(
     verbose = 0,
     **kwargs):
 
-  proto_compile_args.update({
+  pargs = dict(proto_compile_args)
+  pargs.update({
     "name": name + ".pb",
     "protos": protos,
     "deps": [dep + ".pb" for dep in proto_deps],
@@ -58,13 +59,13 @@ def py_proto_library(
   })
 
   if protoc:
-    proto_compile_args["protoc"] = protoc
+    pargs["protoc"] = protoc
   if pb_plugin:
-    proto_compile_args["pb_plugin"] = pb_plugin
+    pargs["pb_plugin"] = pb_plugin
   if grpc_plugin:
-    proto_compile_args["grpc_plugin"] = grpc_plugin
+    pargs["grpc_plugin"] = grpc_plugin
 
-  proto_compile(**proto_compile_args)
+  proto_compile(**pargs)
 
   native.py_library(
     name = name,
